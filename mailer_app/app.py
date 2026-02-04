@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import os
-from customer_GOX import process_and_send
+from script import process_and_send
 
 app = Flask(__name__)
 UPLOAD = "uploads"
