@@ -1,0 +1,24 @@
+<form method="post" enctype="multipart/form-data">
+API Key: <input type="password" name="api_key"><br>
+Sender Name: <input name="sender_name"><br>
+Sender Email: <input name="sender_email"><br>
+CC: <input name="cc"><br>
+BCC: <input name="bcc"><br>
+Subject: <input name="subject"><br>
+
+<textarea name="body" rows="10" cols="60">
+Dear {Add_Name},
+Welcome to {Airline_Name}
+</textarea><br>
+
+Excel: <input type="file" name="excel"><br>
+Template: <input type="file" name="template"><br>
+
+<button type="submit">Send Mails</button>
+</form>
+
+{% if logs %}
+<ul>
+{% for l in logs %}<li>{{l}}</li>{% endfor %}
+</ul>
+{% endif %}
