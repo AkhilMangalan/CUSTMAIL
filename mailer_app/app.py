@@ -3,18 +3,17 @@ import os
 from script import process_and_send
 
 app = Flask(__name__)
-UPLOAD = "uploads"
+UPLOAD="uploads"
 os.makedirs(UPLOAD, exist_ok=True)
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    if request.method == "POST":
+    if request.method=="POST":
         excel = request.files["excel"]
         template = request.files["template"]
 
-        excel_path = os.path.join(UPLOAD, excel.filename)
-        template_path = os.path.join(UPLOAD, template.filename)
-
+        excel_path=os.path.join(UPLOAD, excel.filename)
+        template_path=os.path.join(UPLOAD, template.filename)
         excel.save(excel_path)
         template.save(template_path)
 
@@ -29,9 +28,9 @@ def index():
             request.form["cc"],
             request.form["bcc"]
         )
-
         return render_template("index.html", logs=logs)
 
     return render_template("index.html", logs=None)
 
-app.run(debug=True)
+if __name__=="__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT",5000)))
